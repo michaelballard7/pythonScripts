@@ -4,8 +4,9 @@ from bs4 import BeautifulSoup
 # establish the target URL or URL's
 base_url = "https://www.yelp.com/search?find_desc=&find_loc="
 location = "New York, NY"
-url = base_url + location + "&start=" + str(search_pg)
 search_pg = 0
+url = base_url + location + "&start=" + str(search_pg)
+
 
 # utilize the request get method to get the target url page
 yelp_req = requests.get(url)
@@ -33,3 +34,7 @@ print(" My status code is: " + str(yelp_req.status_code))
 #     print(link)
 
 # I can use the find method instead of find_all
+
+# I can use a dictionary with find_all to extract element with classes and id's
+for business in yelp_soup.find_all('a',{"class":'biz-name'}):
+    print(business.text)
