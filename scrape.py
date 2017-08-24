@@ -34,7 +34,13 @@ print(" My status code is: " + str(yelp_req.status_code))
 #     print(link)
 
 # I can use the find method instead of find_all
+yelp_soup.find_all('li', class_="regular-search-result")
 
 # I can use a dictionary with find_all to extract element with classes and id's
 for business in yelp_soup.find_all('a',{"class":'biz-name'}):
+    print(business.text)
+
+# Scrape all the business information using find_all and class_ 
+businesses = yelp_soup.find_all('div', class_="biz-listing-large")
+for business in businesses:
     print(business.text)
